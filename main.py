@@ -1,5 +1,6 @@
 import sys
 from bfs import BFS
+from dfs import DFS
 
 gameTable = []
 boxPositions = []
@@ -37,3 +38,5 @@ def readLevel(txtFile):
 readLevel(sys.argv[1])
 
 print(BFS(gameTable, playerPositions, goals, boxPositions) + '\n')
+
+print(DFS(gameTable, playerPositions, goals, boxPositions) + '\n')
