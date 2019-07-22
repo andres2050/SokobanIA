@@ -36,8 +36,8 @@ def readLevel(txtFile):
 
 readLevel(sys.argv[1])
 
-print(BFS(gameTable, playerPositions, goals, boxPositions) + '\n')
+print(BFS(gameTable, playerPositions, goals, boxPositions))
 
-print(DFS(gameTable, playerPositions, goals, boxPositions) + '\n')
+print(DFS(gameTable, playerPositions, goals, boxPositions))
 
-print(IDFS(gameTable, playerPositions, goals, boxPositions) + '\n')
+print(IDFS(gameTable, playerPositions, goals, boxPositions))
