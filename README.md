@@ -14,6 +14,6 @@ run.sh <level>.txt
 ```
 
 - Jose Manuel Sanclemente Franco - 1631762
-- Andrés Herrera - 
+- Andrés Herrera - 1710150
 - Juan David Gómez Orozco - 1631689
 - Miguel Angel Gutierrez Prieto - 1626057
