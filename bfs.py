@@ -1,10 +1,10 @@
-from modules import isLevelCompleted, isMoveValid, moveBox
+from modules import isLevelCompleted, isMoveValid, moveBox, alreadyVisited
 
 def BFS(gameTable, playerPositions, goals, boxPositions):
     rootNode = [[playerPositions[0], playerPositions[1]], [i[:] for i in boxPositions], '']
     queue = []
     queue.append(rootNode)
-    nextNodes = []
+    nextNode = []
 
     for node in queue:
         playerRow = node[0][0]
@@ -12,23 +12,13 @@ def BFS(gameTable, playerPositions, goals, boxPositions):
         boxPositions = [i[:] for i in node[1]]
         movements = node[2]
         
-        if isLevelCompleted(goals, boxPositions):
-            print("Breadth First Search:")
-            return movements
-        
         if isMoveValid(gameTable, goals, playerRow-1, playerColumn,'U',boxPositions):
             moveBox(playerRow-1, playerColumn,'U', boxPositions)
             movements += 'U'
-            nextNodes = [[playerRow-1, playerColumn], [i[:] for i in boxPositions], movements]
-            flag = True
+            nextNode = [[playerRow-1, playerColumn], [i[:] for i in boxPositions], movements]
             
-            for visitedNode in queue:
-                if (visitedNode[1]== nextNodes[1]):
-                    if(visitedNode[0]== nextNodes[0]):
-                        flag = False
-            
-            if flag:
-                queue.append(nextNodes)
+            if not alreadyVisited(nextNode, queue):
+                queue.append(nextNode)
             
             movements = movements[:len(movements) - 1]
             boxPositions = [i[:] for i in node[1]]
@@ -36,15 +26,10 @@ def BFS(gameTable, playerPositions, goals, boxPositions):
         if isMoveValid(gameTable, goals, playerRow+1, playerColumn, 'D', boxPositions):
             moveBox(playerRow+1,playerColumn,'D',boxPositions)
             movements += 'D'
-            nextNodes = [[playerRow+1,playerColumn], [i[:] for i in boxPositions], movements]
-            flag = True
+            nextNode = [[playerRow+1,playerColumn], [i[:] for i in boxPositions], movements]
 
-            for visitedNode in queue:
-                if (visitedNode[1]== nextNodes[1]):
-                    if(visitedNode[0]== nextNodes[0]):
-                        flag=False
-            if flag:
-                queue.append(nextNodes)
+            if not alreadyVisited(nextNode, queue):
+                queue.append(nextNode)
             
             movements = movements[:len(movements) - 1]
             boxPositions = [i[:] for i in node[1]]
@@ -52,15 +37,10 @@ def BFS(gameTable, playerPositions, goals, boxPositions):
         if isMoveValid(gameTable, goals, playerRow,playerColumn-1,'L',boxPositions):
             moveBox(playerRow,playerColumn-1,'L',boxPositions)
             movements += 'L'
-            nextNodes = [[playerRow,playerColumn-1], [i[:] for i in boxPositions], movements]
-            flag = True
+            nextNode = [[playerRow,playerColumn-1], [i[:] for i in boxPositions], movements]
 
-            for visitedNode in queue:
-                if (visitedNode[1]== nextNodes[1]):
-                    if(visitedNode[0]== nextNodes[0]):
-                        flag=False
-            if flag:
-                queue.append(nextNodes)
+            if not alreadyVisited(nextNode, queue):
+                queue.append(nextNode)
             
             movements = movements[:len(movements) - 1]
             boxPositions = [i[:] for i in node[1]]
@@ -68,16 +48,15 @@ def BFS(gameTable, playerPositions, goals, boxPositions):
         if isMoveValid(gameTable, goals, playerRow,playerColumn+1,'R',boxPositions):
             moveBox(playerRow,playerColumn+1,'R',boxPositions)
             movements += 'R'
-            nextNodes = [[playerRow,playerColumn+1], [i[:] for i in boxPositions], movements]
-            flag = True
-            for visitedNode in queue:
-                if (visitedNode[1]== nextNodes[1]):
-                    if(visitedNode[0]== nextNodes[0]):
-                        flag=False
-            if flag:
-                queue.append(nextNodes)
+            nextNode = [[playerRow,playerColumn+1], [i[:] for i in boxPositions], movements]
+
+            if not alreadyVisited(nextNode, queue):
+                queue.append(nextNode)
             
             movements = movements[:len(movements) - 1]
             boxPositions = [i[:] for i in node[1]]
 
-    return False
+        if isLevelCompleted(goals, boxPositions):
+            return movements
+
+    return "Not solution was found"

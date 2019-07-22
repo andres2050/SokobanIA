@@ -91,6 +91,13 @@ def moveBox(row, column, direction, nodeBoxPos):
     
     return nodeBoxPos
 
+def alreadyVisited(node, queue):
+    for visitedNode in queue:
+        if (visitedNode[1]== node[1]):
+            if(visitedNode[0]== node[0]):
+                return True
+    
+    return False
 
 def isLevelCompleted(goals, boxPositions):
     result = True

@@ -38,8 +38,11 @@ def readLevel(txtFile):
 
 readLevel(sys.argv[1])
 
+print("Breadth First Search:")
 print(BFS(gameTable, playerPositions, goals, boxPositions) + '\n')
 
+print("Depth First Search:")
 print(DFS(gameTable, playerPositions, goals, boxPositions) + '\n')
 
+print ("Iterative Depth First Search: ")
 print(IDFS(gameTable, playerPositions, goals, boxPositions) + '\n')
