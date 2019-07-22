@@ -10,7 +10,7 @@ To execute algorithms run this script:
 ```
 run.sh <level>.txt
 
-// For example: run.sh nivel1.txt
+// For example: run.sh < nivel1.txt
 ```
 
 - Jose Manuel Sanclemente Franco - 1631762
