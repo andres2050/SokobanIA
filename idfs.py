@@ -15,25 +15,14 @@ def IDFS(gameTable, playerPositions, goals, boxPositions):
                 boxPositions = [i[:] for i in node[1]]
                 movements = node[2]
 
-                if isMoveValid(gameTable, goals, playerRow,playerColumn+1,'R',boxPositions):
-                    moveBox(playerRow,playerColumn+1,'R', boxPositions)
-                    movements += 'R'
-                    nextNode = [[playerRow,playerColumn+1], [i[:] for i in boxPositions], movements]
-
-                    if not alreadyVisited(nextNode, queue):
-                        queue.insert(0,nextNode)
-
-                    movements = movements[:len(movements) - 1]
-                    boxPositions = [i[:] for i in node[1]]
-
-                if isMoveValid(gameTable, goals, playerRow,playerColumn-1,'L',boxPositions):
-                    moveBox(playerRow,playerColumn-1,'L', boxPositions)
-                    movements += 'L'
-                    nextNode = [[playerRow,playerColumn-1], [i[:] for i in boxPositions], movements]
+                if isMoveValid(gameTable, goals, playerRow-1,playerColumn,'U',boxPositions):
+                    moveBox(playerRow-1,playerColumn,'U', boxPositions)
+                    movements += 'U'
+                    nextNode = [[playerRow-1,playerColumn], [i[:] for i in boxPositions], movements]
                     
                     if not alreadyVisited(nextNode, queue):
                         queue.insert(0,nextNode)
-                    
+            
                     movements = movements[:len(movements) - 1]
                     boxPositions = [i[:] for i in node[1]]
 
@@ -48,14 +37,25 @@ def IDFS(gameTable, playerPositions, goals, boxPositions):
                     movements = movements[:len(movements) - 1]
                     boxPositions = [i[:] for i in node[1]]
 
-                if isMoveValid(gameTable, goals, playerRow-1,playerColumn,'U',boxPositions):
-                    moveBox(playerRow-1,playerColumn,'U', boxPositions)
-                    movements += 'U'
-                    nextNode = [[playerRow-1,playerColumn], [i[:] for i in boxPositions], movements]
+                if isMoveValid(gameTable, goals, playerRow,playerColumn-1,'L',boxPositions):
+                    moveBox(playerRow,playerColumn-1,'L', boxPositions)
+                    movements += 'L'
+                    nextNode = [[playerRow,playerColumn-1], [i[:] for i in boxPositions], movements]
                     
                     if not alreadyVisited(nextNode, queue):
                         queue.insert(0,nextNode)
-            
+                    
+                    movements = movements[:len(movements) - 1]
+                    boxPositions = [i[:] for i in node[1]]
+
+                if isMoveValid(gameTable, goals, playerRow,playerColumn+1,'R',boxPositions):
+                    moveBox(playerRow,playerColumn+1,'R', boxPositions)
+                    movements += 'R'
+                    nextNode = [[playerRow,playerColumn+1], [i[:] for i in boxPositions], movements]
+
+                    if not alreadyVisited(nextNode, queue):
+                        queue.insert(0,nextNode)
+
                     movements = movements[:len(movements) - 1]
                     boxPositions = [i[:] for i in node[1]]
                 

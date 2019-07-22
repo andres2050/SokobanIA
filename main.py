@@ -11,9 +11,10 @@ goals = []
 def readLevel(txtFile):
     j = 0
     i = 0
-    levelFile = open(txtFile,'r')
-    textLine = levelFile.readlines()
-    for line in textLine:
+    #levelFile = open(txtFile,'r')
+    #textLine = levelFile.readlines()
+
+    for line in txtFile.splitlines():
         try:
             if line[1]==',': 
                 if len(playerPositions) == 0:
@@ -34,15 +35,15 @@ def readLevel(txtFile):
         
         except IndexError:
             pass
-    levelFile.close()
+    #levelFile.close()
 
 readLevel(sys.argv[1])
 
-print("Breadth First Search:")
+#print("Breadth First Search:")
 print(BFS(gameTable, playerPositions, goals, boxPositions) + '\n')
 
-print("Depth First Search:")
+#print("Depth First Search:")
 print(DFS(gameTable, playerPositions, goals, boxPositions) + '\n')
 
-print ("Iterative Depth First Search: ")
+#print ("Iterative Depth First Search: ")
 print(IDFS(gameTable, playerPositions, goals, boxPositions) + '\n')
